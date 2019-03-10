@@ -1,0 +1,18 @@
+<div class="hello">
+  <a (click)="sayHelloToGuest()">&lt;Click to say hello to guest&gt;</a>
+  <p *ngIf="helloGuest">
+    {{helloGuest}}
+  </p>
+  <br>
+  <a (click)="sayHelloToUser()">&lt;Click to say hello to user&gt;</a>
+  <p *ngIf="helloUser">
+    {{helloUser}}
+  </p>
+  <br>
+  <a (click)="sayHelloToAdmin()">&lt;Click to say hello to admin&gt;</a>
+  <p *ngIf="helloAdmin">
+    {{helloAdmin}}
+  </p>
+  <br>
+</div>
+

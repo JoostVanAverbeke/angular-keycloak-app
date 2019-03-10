@@ -28,10 +28,16 @@ export class KeycloakService {
    */
   private _authorizationHeaderName: string;
 
+  /**
+   * Flag to indicate if the bearer will not be added to the authorization header.
+   */
+  private _enableBearerInterceptor: boolean;
+
   init(): Promise<any> {
     this._silentRefresh = false;
     this._authorizationHeaderName = 'Authorization';
     this._bearerPrefix = 'bearer';
+    this._enableBearerInterceptor = true;
     return new Promise((resolve, reject) => {
       const config = {
         'url': 'http://localhost:8080/auth',
@@ -270,7 +276,7 @@ export class KeycloakService {
         const token: string = await this.getToken();
         headers = headers.set(
           this._authorizationHeaderName,
-          this._bearerPrefix + token
+          this.bearerPrefix + token
         );
         observer.next(headers);
         observer.complete();
@@ -289,5 +295,24 @@ export class KeycloakService {
    */
   getKeycloakInstance(): Keycloak.KeycloakInstance {
     return this.keycloakAuth;
+  }
+  /**
+   * Flag to indicate if the bearer will be added to the authorization header.
+   *
+   * @returns
+   * Returns if the bearer interceptor was set to be disabled.
+   */
+  get enableBearerInterceptor(): boolean {
+    return this._enableBearerInterceptor;
+  }
+
+  /**
+   * Returns the keycloak bearer prefix with a trailing space.
+   *
+   * @returns
+   * Returns the bearer prefix with a trailing space.
+   */
+  get bearerPrefix(): string {
+    return this._bearerPrefix.trim().concat(' ');
   }
 }
