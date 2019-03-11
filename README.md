@@ -40,8 +40,19 @@ helped me to integrate the keycloak logout functionality.
 
 ## Features
 
+### Keycloak based authentication
 Authentication featured by keycloak:
 * login
 * user details
 * logout
+
+### Call Keycloak bearer only secured REST Spring Boot API 
+App calls keycloak bearer only secured REST Spring Boot API [http://localhost:9002/guest/hello](http://localhost:9002/guest/hello), [http://localhost:9002/user/hello](http://localhost:9002/user/hello) and [http://localhost:9002/admin/hello](http://localhost:9002/admin/hello).
+
+The REST API is ROLE based protected:
+* anyone can call http://localhost:9002/guest/hello 
+* jim_user has the user role and can call http://localhost:9002/user/hello
+* joe_admin has the admin role and can call http://localhost:9002/admin/hello 
+
+
 
